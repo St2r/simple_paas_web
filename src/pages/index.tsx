@@ -1,24 +1,26 @@
-import type { NextPage } from 'next'
-import { useRecoilState } from 'recoil';
+import type { NextPage, NextPageContext } from 'next'
+import axios from 'axios';
 
-// css
-import styles from '../styles/Home.module.css'
-import { useRouter } from 'next/router';
-
-const Home: NextPage = () => {
-
-  const router = useRouter();
-
-
-  return (
-    <div className={styles.container}>
-      <div onClick={() => router.push('/404')}>Value: text</div>
-    </div>
-  )
+const Root: NextPage = () => {
+  return <div/>
 }
 
-export async function getServerSideProps() {
-  return { props: { textState: '1'} };
+export async function getServerSideProps(context: NextPageContext) {
+  const {req, res} = context;
+
+  if (res) {
+    console.log('res');
+
+    try {
+      await axios.post('/api/passport/login');
+      res.writeHead(302, {Location: '/dashboard'})
+    } catch (e) {
+      res.writeHead(302, {Location: '/home'})
+    }
+
+    res.end()
+  }
+  return;
 }
 
-export default Home
+export default Root;

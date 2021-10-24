@@ -1,0 +1,35 @@
+.images_container_wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  margin: 0 20px;
+
+  .images_header {
+    height: 200px;
+    margin-top: 20px;
+    position: relative;
+
+    .images_header_operators {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  .images_table {
+    flex-grow: 1;
+    margin: 20px 0;
+
+    // 操作按钮
+    .operation_button_group {
+      > * {
+        margin-left: 20px;
+      }
+
+      & :nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  }
+}
