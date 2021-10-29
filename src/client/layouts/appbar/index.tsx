@@ -35,7 +35,6 @@ const AppBarLayout: React.FC = ({children}) => {
 
   const onChange = useCallback((event, newValue: number) => {
     setTab(newValue);
-      // TODO 加一点过渡动画
     clickTabHandler(newValue);
   }, [clickTabHandler]);
 

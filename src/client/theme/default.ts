@@ -5,6 +5,7 @@ const defaultTheme = createTheme({
   palette: {
     primary: blue,
     secondary: orange,
+    info: orange,
   },
 });
 

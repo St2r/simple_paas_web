@@ -1,4 +1,3 @@
-import type { AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil';
 import { initializeState } from '@model/utils/initialize';
 import { ThemeProvider } from '@emotion/react';
@@ -11,7 +10,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 /** Global CSS */
-import '@client/styles/global.css';
+import '@client/styles/global.scss';
 import { AppPropsWithLayout } from '@client/types';
 
 export default function MyApp({Component, pageProps}: AppPropsWithLayout) {

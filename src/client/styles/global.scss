@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+}
+
+#__next {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/** modal 居中*/
+.common-model-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translateX(-50%) translateY(-50%);
+}

@@ -1,0 +1,18 @@
+.repo_detail_modal {
+  width: 600px;
+
+  .tag_list_grid {
+    height: 400px;
+
+    // 操作按钮
+    .operation_button_group {
+      > * {
+        margin-left: 20px;
+      }
+
+      & :nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  }
+}

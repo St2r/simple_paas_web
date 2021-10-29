@@ -1,19 +1,25 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import Cookie from 'cookies';
 import jwt from 'jsonwebtoken';
+import axios from 'axios';
 
 
 const loginHandler: NextApiHandler = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
+  if (req.method?.toLowerCase() !== 'post') {
+    res.status(403).json({});
+  }
   try {
     const username = req.body['username'];
     const password = req.body['password'];
 
-    // check auth
+    const serverRes = await axios.post(`${process.env.SERVER_HOST_NAME}/user/login`);
 
-    const token = jwt.sign(JSON.stringify({username}), process.env.JWT_SECRET_KEY, {});
+    const token = jwt.sign(JSON.stringify({username, password}), process.env.JWT_SECRET_KEY, {});
+
+    // 写 Cookie
     const cookie = new Cookie(req, res);
     cookie.set('x-auth', token, {httpOnly: true});
 

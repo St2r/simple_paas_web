@@ -1,6 +1,7 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import jwt from 'jsonwebtoken';
 import Cookie from 'cookies';
+import axios from 'axios';
 
 const registerHandler: NextApiHandler = async (
   req: NextApiRequest,
@@ -10,9 +11,10 @@ const registerHandler: NextApiHandler = async (
     const username = req.body['username'];
     const password = req.body['password'];
 
-    // await add user
+    const serverRes = await axios.post(`${process.env.SERVER_HOST_NAME}/user/register`);
 
-    const token = jwt.sign(JSON.stringify({username}), process.env.JWT_SECRET_KEY, {});
+    const token = jwt.sign(JSON.stringify({username, password}), process.env.JWT_SECRET_KEY, {});
+
     const cookie = new Cookie(req, res);
     cookie.set('x-auth', token, {httpOnly: true});
 
